@@ -23,7 +23,7 @@
 }
 
 span {
-  color: #fbae3c;
+  color: var(--neutral-color);
   font-weight: bold;
 }
 </style>

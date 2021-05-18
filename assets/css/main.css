@@ -20,9 +20,9 @@
     --sub-color-dark-1: #000c18;
     --sub-color-light-2: #686868;
     /* Third Color */
-    --neutral-color: #d5514b;
-    --neutral-color-light-1: #e0564e;
-    --neutral-color-dark-1: #bc4742;
+    --neutral-color: #fbae3c;
+    --neutral-color-light-1: #ffcc81;
+    --neutral-color-dark-1: #d4912f;
     /* Opacity */
     --opacity-1: rgba(0, 0, 0, .01);
     --opacity-2: rgba(0, 0, 0, .02);

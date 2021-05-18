@@ -1,10 +1,36 @@
 <template>
   <div id="project">
     <div class="project__content">
-      <nav data-aos="fade-in" class="project__nav">
+      <nav data-aos="fade" class="project__nav">
         <a class="nav__item active">Personal</a>
         <a class="nav__item">Professional</a>
       </nav>
+      <div class="project__items">
+        <div
+          v-for="i in 10"
+          :key="i"
+          data-aos="flip-left"
+          :data-aos-delay="i * 100"
+          class="item"
+        >
+          <div class="item__logo--wrapper">
+            <img
+              class="item__logo"
+              src="/images/project/itsnook_icon.png"
+              alt="It's Nook logo"
+            />
+            <h3 class="item__title">It's Nook</h3>
+            <p class="item__description">
+              Pattern Editor for the video game Animal Crossing
+            </p>
+          </div>
+          <img
+            class="item__background"
+            src="/images/project/itsnook.png"
+            alt="it's nook application"
+          />
+        </div>
+      </div>
     </div>
     <div class="background project--background" />
   </div>
@@ -24,12 +50,9 @@ export default {
 .project--background {
   background: url('/images/2.svg');
   background-size: cover;
-  animation: project--fade-in ease-in-out 2s 1 normal forwards;
-  opacity: 0;
 }
 
 #project {
-  display: flex;
   position: relative;
   overflow: hidden;
   height: 400px;
@@ -37,8 +60,9 @@ export default {
 }
 
 .project__content {
-  animation: project--bounce ease-in-out 0.25s 1 normal forwards;
-  opacity: 0;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
 .project__nav {
@@ -53,158 +77,85 @@ export default {
   font-size: 2.5rem;
   padding: var(--spacing-little);
   cursor: pointer;
+  user-select: none;
+}
+
+.nav__item:hover {
+  transition: all 0.4s ease-in;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .nav__item.active {
   color: var(--sub-color);
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 8rem;
-  color: #fff;
-  font-family: 'Open Sans', sans-serif;
+.project__items {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-little) var(--spacing-little) var(--spacing-medium);
 }
 
-.project__description {
-  line-height: 1.5;
-  font-size: 2rem;
-  max-width: 600px;
-  padding: 0 var(--spacing-medium);
-  margin-top: var(--spacing-large);
-}
-
-.scroll-down--wrapper {
+.item {
   position: relative;
-  margin-top: var(--spacing-large);
+  height: 100%;
+  margin: var(--spacing-little);
+  background-color: #adadad;
+  /*max-width: 400px;*/
+  min-width: 500px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
 }
 
-.scroll-down {
-  border: 2px solid #fff;
-  border-radius: 20px;
-  bottom: 60px;
-  height: 50px;
+.item__logo--wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.item__logo {
+  width: 80px;
+  margin: var(--spacing-medium);
+}
+
+.item__title {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--neutral-color);
+  font-weight: bold;
+  font-size: 3rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.item__description {
+  color: #fff;
+  font-weight: bold;
+  margin-top: 5px;
+  max-width: 60%;
+  text-shadow: 0 0 10px #000;
+}
+
+.item__background {
+  position: absolute;
   top: 0;
   left: 0;
-  margin: 0 auto;
-  position: absolute;
-  right: 0;
-  width: 30px;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.4;
 }
 
-.scroll-down::before {
-  animation: scrollDownAnimation 2s infinite;
-  background-color: #fff;
-  border-radius: 100%;
-  content: '';
-  height: 6px;
-  left: 0;
-  margin: 0 auto;
-  position: absolute;
-  right: 0;
-  top: 10px;
-  width: 6px;
+.item:hover .item__background {
+  transition: all 0.4s ease-in;
+  opacity: 0.8;
 }
 
-@keyframes project--bounce {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  80% {
-    opacity: 1;
-    transform: scale(1.025);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes project--fade-in {
-  0% {
-    opacity: 0;
-    transform: scale(1.5);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes project--fade-out {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.5);
-  }
-}
-
-@-moz-keyframes scrollDownAnimation {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0;
-    transform: translate(0, 20px);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@-webkit-keyframes scrollDownAnimation {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0;
-    transform: translate(0, 20px);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@-o-keyframes scrollDownAnimation {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0;
-    transform: translate(0, 20px);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes scrollDownAnimation {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0;
-    transform: translate(0, 20px);
-  }
-  100% {
-    opacity: 0;
-  }
+.item:hover .item__logo--wrapper {
+  transition: all 0.4s ease-in;
+  opacity: 0.5;
 }
 </style>
