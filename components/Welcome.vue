@@ -1,13 +1,13 @@
 <template>
   <div id="welcome">
     <div class="welcome__content">
-      <h1 data-aos="fade" class="logo">Kilian Smiti<span>.</span></h1>
-      <p data-aos="fade" class="welcome__description">
+      <h1 class="logo">Kilian Smiti<span>.</span></h1>
+      <p class="welcome__description">
         Welcome to my world, I am a <span>{{ descriptionText }}</span>
         <br />
         living in <span>France</span>, scroll to find out more about me !
       </p>
-      <div data-aos="fade-in" class="scroll-down--wrapper">
+      <div class="scroll-down--wrapper">
         <div class="scroll-down"></div>
       </div>
     </div>
