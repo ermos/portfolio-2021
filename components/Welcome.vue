@@ -34,7 +34,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.switchDescription()
-    }, 1000)
+    }, 2000)
   },
   methods: {
     switchDescription() {
