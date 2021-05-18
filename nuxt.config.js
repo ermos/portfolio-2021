@@ -37,6 +37,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/google-fonts',
     [
       'nuxt-fontawesome',
       {
@@ -60,4 +61,18 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  googleFonts: {
+    families: {
+      prefetch: true,
+      preconnect: true,
+      preload: true,
+      Montserrat: {
+        wght: [200],
+      },
+      'Open+Sans': {
+        wght: [800],
+      },
+    },
+  },
 }
