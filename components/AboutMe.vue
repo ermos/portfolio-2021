@@ -12,9 +12,7 @@
         <p data-aos="fade" class="portfolio__job">Full-Stack Developer</p>
       </aside>
       <article class="portfolio__article">
-        <h2 data-aos="fade-up" data-aos-delay="400" class="biography__title">
-          Hey ! 👋
-        </h2>
+        <h2 data-aos="fade-up" class="biography__title">Hey ! 👋</h2>
         <p data-aos="fade-up" class="biography__p">
           I'm <b>Kilian SMITI</b>, a french developer passionate about web
           technologies since his childhood. I started building websites when I
