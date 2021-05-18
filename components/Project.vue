@@ -87,7 +87,7 @@ export default {
           stack: 'Nuxt.js, Golang, Gitlab-ci, Docker',
           description: 'Pattern Editor for the video game Animal Crossing',
           logo_url: '/images/project/itsnook_icon.png',
-          background_url: '/images/project/itsnook.png',
+          background_url: '/images/project/itsnook.jpg',
           url: 'https://itsnook.com/#/editor',
           text: [
             `The idea behind this application was to bring back a breath of freshness
@@ -106,7 +106,7 @@ export default {
           stack: 'Symfony 4',
           description: 'Calculate your progress in your battle pass',
           logo_url: '/images/project/fortnitepredict_icon.png',
-          background_url: '/images/project/fortnitepredict.png',
+          background_url: '/images/project/fortnitepredict.jpg',
           url: null,
           text: [
             `FortnitePredict allows you to calculate the number of games on the Fortnite game
@@ -120,7 +120,7 @@ export default {
           stack: 'Pawn',
           description: 'Counter-Strike Training Platform',
           logo_url: '/images/project/hsfactory_icon.png',
-          background_url: '/images/project/hsfactory.png',
+          background_url: '/images/project/hsfactory.jpg',
           url: 'https://hsfactory.net/',
           text: [
             `HSFactory is a training platform based on the counter-strike game, it has a multitude of servers on different game modes.`,
@@ -147,7 +147,7 @@ export default {
           stack: 'PHP',
           description: 'Web radio based on HABBO game',
           logo_url: '/images/project/sonohabbo_icon.png',
-          background_url: '/images/project/sonohabbo.png',
+          background_url: '/images/project/sonohabbo.jpg',
           url: null,
           text: [
             `SonoHabbo is a web-radio taking up the concept of SonoZone by integrating the universe of HABBO around it.`,
