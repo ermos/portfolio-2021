@@ -214,7 +214,6 @@ export default {
 }
 
 .project__content {
-  height: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -349,7 +348,7 @@ export default {
 }
 
 .project__explain {
-  padding: var(--spacing-little);
+  padding: var(--spacing-little) var(--spacing-little) var(--spacing-large);
   margin: auto;
   color: #474747;
   width: calc(70% - 30px);
