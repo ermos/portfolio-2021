@@ -1,7 +1,7 @@
 <template>
   <div id="welcome">
     <div class="welcome__content">
-      <h1 class="logo welcome__logo">Kilian Smiti<span>.</span></h1>
+      <h1 class="logo">Kilian Smiti<span>.</span></h1>
       <p class="welcome__description">
         Welcome to my world, I am a <span>{{ descriptionText }}</span>
         <br />
@@ -32,7 +32,9 @@ export default {
     }
   },
   mounted() {
-    this.switchDescription()
+    setTimeout(() => {
+      this.switchDescription()
+    }, 1000)
   },
   methods: {
     switchDescription() {

@@ -39,7 +39,7 @@ body {
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   background-color: var(--background);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .nd {
