@@ -32,6 +32,18 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    [
+      'nuxt-fontawesome',
+      {
+        component: 'fa', // customize component name
+        imports: [
+          {
+            set: '@fortawesome/free-solid-svg-icons',
+            icons: ['faAngleLeft', 'faAngleRight'],
+          },
+        ],
+      },
+    ],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

@@ -1,5 +1,5 @@
 <template>
-  <div style="min-height: 300vh">
+  <div style="min-height: 500vh">
     <Welcome />
     <AboutMe />
     <Project />

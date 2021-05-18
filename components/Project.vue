@@ -3,43 +3,141 @@
     <div class="project__content">
       <h2 data-aos="fade" class="project__title">Personal Projects</h2>
       <div class="project__items">
+        <div v-show="isPrev" class="project__btn project__prev" @click="goPrev">
+          <fa icon="angle-left" />
+        </div>
+        <div v-show="isNext" class="project__btn project__next" @click="goNext">
+          <fa icon="angle-right" />
+        </div>
         <div
-          v-for="i in 10"
-          :key="i"
-          data-aos="flip-left"
-          :data-aos-delay="i * 100"
-          class="item"
+          class="items--wrapper"
+          :style="'transform: translateX(-' + position + 'px)'"
         >
-          <div class="item__logo--wrapper">
+          <div
+            v-for="(item, i) in list"
+            :key="i"
+            data-aos="flip-left"
+            :data-aos-delay="i * 100"
+            class="item"
+            :class="current === i ? 'active' : ''"
+            @click="current = i"
+          >
+            <div class="item__logo--wrapper">
+              <img
+                class="item__logo"
+                :src="item.logo_url"
+                :alt="`${item.title}'s logo`"
+              />
+              <h3 class="item__title">{{ item.title }}</h3>
+              <p class="item__description">
+                {{ item.description }}
+              </p>
+            </div>
             <img
-              class="item__logo"
-              src="/images/project/itsnook_icon.png"
-              alt="It's Nook logo"
+              class="item__background"
+              :src="item.background_url"
+              :alt="`${item.title}'s application screen`"
             />
-            <h3 class="item__title">It's Nook</h3>
-            <p class="item__description">
-              Pattern Editor for the video game Animal Crossing
-            </p>
           </div>
-          <img
-            class="item__background"
-            src="/images/project/itsnook.png"
-            alt="it's nook application"
-          />
         </div>
       </div>
     </div>
+    <article class="project__explain">
+      <h3 data-aos="fade-left" class="explain__title">
+        {{ list[current].title }}
+      </h3>
+      <p data-aos="fade-left" class="explain__description">
+        {{ list[current].description }}
+      </p>
+      <p
+        v-for="(t, i) in list[current].text"
+        :key="i"
+        data-aos="fade-left"
+        class="explain__paragraphe"
+      >
+        {{ t }}
+      </p>
+      <a class="explain__link" :href="list[current].url">
+        <Btn data-aos="fade-left" class="explain__btn"
+          >Go to {{ list[current].title }}</Btn
+        >
+      </a>
+    </article>
     <div class="background project--background" />
   </div>
 </template>
 
 <script>
+import Btn from '../components/Btn'
+
 export default {
   name: 'Project',
-  // data() {
-  //   return {
-  //   }
-  // },
+  components: [Btn],
+  data() {
+    return {
+      current: 0,
+      list: [
+        {
+          title: "It's Nook",
+          description: 'Pattern Editor for the video game Animal Crossing',
+          logo_url: '/images/project/itsnook_icon.png',
+          background_url: '/images/project/itsnook.png',
+          url: 'https://itsnook.com/#/editor',
+          text: [
+            `The idea behind this application was to bring back a breath of freshness
+            in the world of pattern editors on Animal Crossing. Most being aging
+            whether it is ergonomically or in terms of features, I decided to create
+            my own editor.`,
+            `It's Nook is therefore a mix between the existing pattern editors and
+        digital drawing tools such as Paint or Photoshop, the interface is also
+        strongly inspired by the latter.`,
+            `This project allowed me to discover a lot of concept in the image
+        processing, it is also one of my first highly interactive web interface.`,
+          ],
+        },
+      ],
+      itemWidth: 400,
+      projects: null,
+      wrapper: null,
+      position: 0,
+      isNext: true,
+      isPrev: false,
+    }
+  },
+  mounted() {
+    this.projects = document.querySelector('.project__items')
+    this.wrapper = document.querySelector('.items--wrapper')
+    const size = this.projects.offsetWidth
+    const maxSize = this.projects.scrollWidth
+    if (maxSize <= size) {
+      this.isNext = false
+    }
+  },
+  methods: {
+    goNext() {
+      const size =
+        this.projects.offsetWidth > 600 ? 600 : this.projects.offsetWidth
+      const maxSize = this.wrapper.scrollWidth
+      this.isPrev = true
+      if (this.position + size - 100 >= maxSize - size) {
+        this.isNext = false
+        this.position = maxSize - size
+        return
+      }
+      this.position = this.position + size - 100
+    },
+    goPrev() {
+      const size =
+        this.projects.offsetWidth > 400 ? 400 : this.projects.offsetWidth
+      this.isNext = true
+      if (this.position - size - 100 < 0) {
+        this.isPrev = false
+        this.position = 0
+        return
+      }
+      this.position = this.position - size - 100
+    },
+  },
 }
 </script>
 
@@ -52,7 +150,6 @@ export default {
 #project {
   position: relative;
   overflow: hidden;
-  height: 400px;
   width: 100%;
 }
 
@@ -77,20 +174,34 @@ export default {
   display: flex;
   align-items: center;
   padding: var(--spacing-little) var(--spacing-little) var(--spacing-medium);
+  position: relative;
+}
+
+.items--wrapper {
+  display: flex;
+  flex: 1;
+  transition: all 0.5s ease-in;
 }
 
 .item {
   position: relative;
-  height: 100%;
   margin: var(--spacing-little);
   background-color: #adadad;
-  /*max-width: 400px;*/
-  min-width: 500px;
-  width: 100%;
+  width: 400px;
+  height: 250px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   cursor: pointer;
+}
+
+.item.active {
+  box-shadow: 0 0 10px var(--sub-color);
+  cursor: initial;
+}
+
+.item.active .item__background {
+  opacity: 0.6;
 }
 
 .item__logo--wrapper {
@@ -134,11 +245,80 @@ export default {
 
 .item:hover .item__background {
   transition: all 0.4s ease-in;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
-.item:hover .item__logo--wrapper {
-  transition: all 0.4s ease-in;
-  opacity: 0.5;
+.project__btn {
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  color: var(--neutral-color);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project__btn svg {
+  font-size: 5rem;
+}
+
+.project__btn:hover {
+  transition: background-color 0.2s ease-in;
+  background-color: var(--sub-color);
+}
+
+.project__btn:active {
+  transition: initial;
+  background-color: var(--sub-color-dark-1);
+}
+
+.project__next {
+  right: 0;
+}
+
+.project__prev {
+  left: 0;
+}
+
+.project__explain {
+  padding: var(--spacing-little);
+  margin: auto;
+  color: #474747;
+  width: calc(70% - 30px);
+}
+
+.explain__title {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--sub-color);
+  font-weight: bold;
+  font-size: 5rem;
+  padding: var(--spacing-little) var(--spacing-little) 0;
+}
+
+.explain__description {
+  font-weight: bold;
+  margin-top: 5px;
+  padding: 0 var(--spacing-little) var(--spacing-little);
+}
+
+.explain__paragraphe {
+  font-size: 2rem;
+  margin-top: 20px;
+  line-height: 2;
+  padding: var(--spacing-little);
+}
+
+.explain__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.explain__btn {
+  margin: var(--spacing-little) auto;
+  display: block;
 }
 </style>
