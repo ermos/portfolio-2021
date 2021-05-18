@@ -1,10 +1,7 @@
 <template>
   <div id="project">
     <div class="project__content">
-      <nav data-aos="fade" class="project__nav">
-        <a class="nav__item active">Personal</a>
-        <a class="nav__item">Professional</a>
-      </nav>
+      <h2 data-aos="fade" class="project__title">Personal Projects</h2>
       <div class="project__items">
         <div
           v-for="i in 10"
@@ -65,28 +62,14 @@ export default {
   flex-direction: column;
 }
 
-.project__nav {
+.project__title {
   font-family: 'Open Sans', sans-serif;
   display: flex;
-  padding: var(--spacing-little);
-}
-
-.nav__item {
-  color: #868686;
+  padding: var(--spacing-medium);
+  color: var(--sub-color);
   font-weight: bold;
   font-size: 2.5rem;
-  padding: var(--spacing-little);
-  cursor: pointer;
   user-select: none;
-}
-
-.nav__item:hover {
-  transition: all 0.4s ease-in;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-}
-
-.nav__item.active {
-  color: var(--sub-color);
 }
 
 .project__items {
