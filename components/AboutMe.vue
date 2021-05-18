@@ -3,8 +3,8 @@
     <section class="portfolio__content">
       <aside class="portfolio__aside">
         <img
-          width="auto"
-          height="auto"
+          width="200"
+          height="200"
           data-aos="zoom-in"
           class="portfolio__avatar"
           alt="picture of Kilian SMITI"

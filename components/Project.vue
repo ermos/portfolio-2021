@@ -22,8 +22,7 @@
           >
             <div class="item__logo--wrapper">
               <img
-                width="auto"
-                height="auto"
+                width="80"
                 class="item__logo"
                 :src="item.logo_url"
                 :alt="`${item.title}'s logo`"
@@ -34,8 +33,8 @@
               </p>
             </div>
             <img
-              width="auto"
-              height="auto"
+              width="400"
+              height="250"
               class="item__background"
               :src="item.background_url"
               :alt="`${item.title}'s application screen`"
