@@ -41,6 +41,10 @@ export default {
             set: '@fortawesome/free-solid-svg-icons',
             icons: ['faAngleLeft', 'faAngleRight'],
           },
+          {
+            set: '@fortawesome/free-brands-svg-icons',
+            icons: ['faGithub', 'faLinkedin'],
+          },
         ],
       },
     ],

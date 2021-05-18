@@ -16,8 +16,6 @@
           <div
             v-for="(item, i) in list"
             :key="i"
-            data-aos="flip-left"
-            :data-aos-delay="i * 100"
             class="item"
             :class="current === i ? 'active' : ''"
             @click="current = i"
@@ -49,6 +47,9 @@
       <p data-aos="fade-left" class="explain__description">
         {{ list[current].description }}
       </p>
+      <p data-aos="fade-left" class="explain__stack">
+        <b>Stack :</b> {{ list[current].stack }}
+      </p>
       <p
         v-for="(t, i) in list[current].text"
         :key="i"
@@ -57,9 +58,13 @@
       >
         {{ t }}
       </p>
-      <a class="explain__link" :href="list[current].url">
+      <a
+        v-if="list[current].url != null"
+        class="explain__link"
+        :href="list[current].url"
+      >
         <Btn data-aos="fade-left" class="explain__btn"
-          >Go to {{ list[current].title }}</Btn
+          >Go on {{ list[current].title }}</Btn
         >
       </a>
     </article>
@@ -79,6 +84,7 @@ export default {
       list: [
         {
           title: "It's Nook",
+          stack: 'Nuxt.js, Golang, Gitlab-ci, Docker',
           description: 'Pattern Editor for the video game Animal Crossing',
           logo_url: '/images/project/itsnook_icon.png',
           background_url: '/images/project/itsnook.png',
@@ -93,6 +99,60 @@ export default {
         strongly inspired by the latter.`,
             `This project allowed me to discover a lot of concept in the image
         processing, it is also one of my first highly interactive web interface.`,
+          ],
+        },
+        {
+          title: 'FortnitePredict',
+          stack: 'Symfony 4',
+          description: 'Calculate your progress in your battle pass',
+          logo_url: '/images/project/fortnitepredict_icon.png',
+          background_url: '/images/project/fortnitepredict.png',
+          url: null,
+          text: [
+            `FortnitePredict allows you to calculate the number of games on the Fortnite game
+            necessary to reach the final level of your battle pass
+            following an algorithm based on the player's profile.`,
+            `Following the overhaul of the Fortnite system, the tool no longer being useful, has been stopped.`,
+          ],
+        },
+        {
+          title: 'HSFactory',
+          stack: 'Pawn',
+          description: 'Counter-Strike Training Platform',
+          logo_url: '/images/project/hsfactory_icon.png',
+          background_url: '/images/project/hsfactory.png',
+          url: 'https://hsfactory.net/',
+          text: [
+            `HSFactory is a training platform based on the counter-strike game, it has a multitude of servers on different game modes.`,
+            `I was in charge for several years of designing and maintaining game server plugins.`,
+          ],
+        },
+        {
+          title: 'MyGuilde',
+          stack: 'Symfony 4, Gitlab-ci',
+          description: 'Site generator for gaming guilds/clans',
+          logo_url: '/images/project/myguilde_icon.png',
+          background_url: '/images/project/myguilde.jpg',
+          url: null,
+          text: [
+            `MyGuilde allows you to generate guild sites with all the essentials
+            that a video game guild needed: a forum, member management and an article system.`,
+            `The main target was the DOFUS game guilds, it was common to see guilds create their own sites,
+            unfortunately it was not within the reach of everyone, this is where MyGuilde came into play.`,
+            `Due to lack of time and money as well as the activity which was declining, the project was not maintained.`,
+          ],
+        },
+        {
+          title: 'SonoHabbo',
+          stack: 'PHP',
+          description: 'Web radio based on HABBO game',
+          logo_url: '/images/project/sonohabbo_icon.png',
+          background_url: '/images/project/sonohabbo.png',
+          url: null,
+          text: [
+            `SonoHabbo is a web-radio taking up the concept of SonoZone by integrating the universe of HABBO around it.`,
+            `The web radio was equipped with a web radio, an article system as well as various tools related to the game.`,
+            `Due to lack of time from every member, the project was not maintained.`,
           ],
         },
       ],
@@ -193,6 +253,7 @@ export default {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  user-select: none;
 }
 
 .item.active {
@@ -211,6 +272,8 @@ export default {
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .item__logo {
@@ -238,8 +301,9 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 1;
   opacity: 0.4;
 }
 
@@ -303,6 +367,18 @@ export default {
   font-weight: bold;
   margin-top: 5px;
   padding: 0 var(--spacing-little) var(--spacing-little);
+}
+
+.explain__stack {
+  font-size: 1.5rem;
+  margin-top: 5px;
+  padding: 0 var(--spacing-little) var(--spacing-little);
+  color: #282828;
+}
+
+.explain__stack b {
+  color: #323232;
+  font-weight: bold;
 }
 
 .explain__paragraphe {
